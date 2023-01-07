@@ -14,7 +14,10 @@ except:
 try:
 	os.system("/usr/bin/clear")
 except:
-	pass
+	try:
+		os.system("cls")
+	except:
+		pass
 
 print(Fore.RED + Style.NORMAL + """
 			Script développé par zako#7777
@@ -39,8 +42,11 @@ bot = commands.Bot(command_prefix="+", intents=discord.Intents.all())
 
 @bot.event
 async def on_ready():
+try:
+	os.system("/usr/bin/clear")
+except:
 	try:
-		os.system("/usr/bin/clear")
+		os.system("cls")
 	except:
 		pass
 	print(Fore.BLUE + Style.NORMAL + """
