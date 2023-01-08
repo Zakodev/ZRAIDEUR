@@ -42,13 +42,13 @@ bot = commands.Bot(command_prefix="+", intents=discord.Intents.all())
 
 @bot.event
 async def on_ready():
-try:
-	os.system("/usr/bin/clear")
-except:
 	try:
-		os.system("cls")
+		os.system("/usr/bin/clear")
 	except:
-		pass
+		try:
+			os.system("cls")
+		except:
+			pass
 	print(Fore.BLUE + Style.NORMAL + """
 	  ____   ___ _____   _____ _   _   __  __    _    ____   ____ _   _ _____ 
 	 | __ ) / _ \_   _| | ____| \ | | |  \/  |  / \  |  _ \ / ___| | | | ____|
